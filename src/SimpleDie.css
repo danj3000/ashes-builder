@@ -1,0 +1,51 @@
+.die {
+    font-size: 1.3rem;
+    line-height: 2rem;
+    border-radius: 5px;
+    height: 36px;
+    width: 36px;
+    min-width: 36px;
+    margin: 5px;
+}
+
+.ceremonial {
+    color: #ee3342;
+    background-color: #111821;
+    border-color: #ee3342;
+}
+
+.charm {
+    color: #f7e442;
+    background-color: #f34f98;
+    border-color: #f7e442;
+}
+
+.illusion {
+    color: #8bc7ea;
+    background-color: #490d67;
+    border-color: #8bc7ea;
+}
+
+.natural {
+    color: #cedb00;
+    background-color: #004a98;
+    border-color: #cedb00;
+}
+
+.divine {
+    color: #b58a2b;
+    background-color: #f2f2f2;
+    border-color: #b58a2b;
+}
+
+.sympathy {
+    color: #e3c2af;
+    background-color: #119981;
+    border-color: #e3c2af;
+}
+
+.time {
+    color: #dfdfdf;
+    background-color: #9a2e36;
+    border-color: #dfdfdf;
+}
