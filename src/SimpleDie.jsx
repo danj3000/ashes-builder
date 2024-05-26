@@ -1,6 +1,6 @@
 import './SimpleDie.css'
 
-function SimpleDie({ magic }) {
+function SimpleDie({ magic, onClick }) {
     let diceFont = 'phg-basic-magic';
     let description = magic;
 
@@ -9,6 +9,7 @@ function SimpleDie({ magic }) {
     return (
         <span
             className={dieClass}
+            onClick={() => onClick(magic)}
         >
             <span className={diceFont} title={description}></span>
         </span>

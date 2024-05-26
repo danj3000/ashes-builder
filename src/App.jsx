@@ -11,6 +11,8 @@ import { useState } from 'react';
 
 function App() {
   const [cardFilter, setCardFilter] = useState([]);
+  const [catChecked, setCatChecked] = useState(true);
+
   const onFilterClick = (value) => {
     if (cardFilter.includes(value)) {
       cardFilter.splice(cardFilter.indexOf(value), 1);
@@ -21,13 +23,17 @@ function App() {
     setCardFilter([...cardFilter]);
   }
 
+  const onCatClick = () => {
+    setCatChecked(!catChecked);
+  }
+
   return (
     <Container >
       <Row className="justify-content-md-center">
-        <FilterContext.Provider value={{ cardFilter, onFilterClick }}>
+        <FilterContext.Provider value={{ cardFilter, onFilterClick, catChecked, onCatClick }}>
           <Col xs={12} className='cardlist-container' >
             <CardFilter />
-            <CardList allCards={allCards.results} cardFilter={cardFilter} />
+            <CardList allCards={allCards.results} cardFilter={cardFilter} catChecked={catChecked} />
           </Col>
         </FilterContext.Provider>
       </Row>

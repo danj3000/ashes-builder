@@ -5,4 +5,12 @@
     :last-child {
         margin-left: auto;
     }
+
+    .cat-toggle {
+        margin-top: 5px;
+    }
+
+    .filter-button {
+        margin-top: 5px;
+    }
 }

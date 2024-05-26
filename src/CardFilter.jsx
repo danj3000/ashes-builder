@@ -1,28 +1,44 @@
-import { Dropdown } from "react-bootstrap";
+import { ButtonGroup, Dropdown, ToggleButton } from "react-bootstrap";
 import './CardFilter.css';
 import { Magic } from "./constants";
 import { FilterContext } from "./util";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import SimpleDie from "./SimpleDie";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCat } from "@fortawesome/free-solid-svg-icons";
 
 function CardFilter() {
     const {
         cardFilter,
-        onFilterClick
+        onFilterClick,
+        catChecked,
+        onCatClick
     } = useContext(FilterContext);
 
     return <div className='card-filter'>
+        <ButtonGroup className="mb-2">
+            <ToggleButton
+                className="cat-toggle"
+                id="toggle-check"
+                type="checkbox"
+                variant={catChecked ? 'warning' : 'secondary'}
+
+                checked={catChecked}
+                value="1"
+                onChange={() => onCatClick()}
+            >
+                <FontAwesomeIcon icon={faCat} />
+            </ToggleButton>
+        </ButtonGroup>
         {cardFilter.map(m => (
-            <SimpleDie key={m} magic={m} />
+            <SimpleDie key={m} magic={m} onClick={(magic) => onFilterClick(magic)} />
         ))}
 
         <Dropdown
             autoClose='outside'
-            className='ashes-live def'
-            title='ashes.live'
-
         >
             <Dropdown.Toggle
+                className='filter-button'
 
                 split
                 id='dropdown-basic'
