@@ -26,6 +26,7 @@ function App() {
   const onCatClick = () => {
     setCatChecked(!catChecked);
   }
+  const sortedCards = allCards.results.sort((a, b) => a.type < b.type ? -1 : 1);
 
   return (
     <Container >
@@ -33,7 +34,7 @@ function App() {
         <FilterContext.Provider value={{ cardFilter, onFilterClick, catChecked, onCatClick }}>
           <Col xs={12} className='cardlist-container' >
             <CardFilter />
-            <CardList allCards={allCards.results} cardFilter={cardFilter} catChecked={catChecked} />
+            <CardList allCards={sortedCards} cardFilter={cardFilter} catChecked={catChecked} />
           </Col>
         </FilterContext.Provider>
       </Row>
