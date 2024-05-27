@@ -1,9 +1,13 @@
 .card-filter {
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
 
-    :last-child {
+    /* :last-child {
         margin-left: auto;
+    } */
+    :first-child {
+        margin-right: auto;
     }
 
     .cat-toggle {

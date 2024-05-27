@@ -2,13 +2,14 @@ import { ButtonGroup, Dropdown, ToggleButton } from "react-bootstrap";
 import './CardFilter.css';
 import { Magic } from "./constants";
 import { FilterContext } from "./util";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import SimpleDie from "./SimpleDie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCat } from "@fortawesome/free-solid-svg-icons";
 
 function CardFilter() {
     const {
+        searchText,
         cardFilter,
         onFilterClick,
         catChecked,
@@ -34,9 +35,7 @@ function CardFilter() {
             <SimpleDie key={m} magic={m} onClick={(magic) => onFilterClick(magic)} />
         ))}
 
-        <Dropdown
-            autoClose='outside'
-        >
+        <Dropdown>
             <Dropdown.Toggle
                 className='filter-button'
 
