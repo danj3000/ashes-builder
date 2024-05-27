@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'phg-ashes';
   src:
-    url("~assets/fonts/phg-ashes.ttf") format("truetype");
+    url("/phg-ashes.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
