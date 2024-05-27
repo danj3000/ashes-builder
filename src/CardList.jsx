@@ -2,8 +2,16 @@ import './CardList.css';
 import CardListItem from './CardListItem';
 import Accordion from 'react-bootstrap/Accordion';
 import catSpill from './data/catspill.json';
+import { useContext } from 'react';
+import { FilterContext, imageUrl } from './util';
 
-function CardList({ allCards, cardFilter, catChecked }) {
+function CardList({ allCards }) {
+    const {
+        cardFilter,
+        catChecked,
+        showGrid
+    } = useContext(FilterContext);
+
     // apply cat spill restrictions
     const catFreeCards = allCards.filter(c => !catChecked || !catSpill.banned.includes(c.stub));
     // mark partials
@@ -23,7 +31,15 @@ function CardList({ allCards, cardFilter, catChecked }) {
                 <Accordion.Item eventKey={groupKey} key={groupKey}>
                     <Accordion.Header>{groupKey}</Accordion.Header>
                     <Accordion.Body>
-                        {groupedCards[groupKey].map((card) => <CardListItem key={card} card={card} />)}
+                        {
+                            showGrid ? (
+                                <div className='gallery-grid'>
+                                    {groupedCards[groupKey].map((card) => <img key={card} className="gallery-card-image" src={imageUrl(card.stub)} />)}
+                                </div>
+                            )
+                                :
+                                groupedCards[groupKey].map((card) => <CardListItem key={card} card={card} />)
+                        }
 
                     </Accordion.Body>
                 </Accordion.Item>

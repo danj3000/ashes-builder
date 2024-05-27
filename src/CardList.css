@@ -8,6 +8,17 @@
         padding: unset;
     }
 
+    .gallery-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+
+        .gallery-card-image {
+            width: 30%;
+        }
+    }
+
     .card-list-item {
         display: flex;
         flex-direction: row;

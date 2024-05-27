@@ -5,21 +5,22 @@ import { FilterContext } from "./util";
 import { useContext } from "react";
 import SimpleDie from "./SimpleDie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCat } from "@fortawesome/free-solid-svg-icons";
+import { faCat, faGrip, faGripLines } from "@fortawesome/free-solid-svg-icons";
 
 function CardFilter() {
     const {
-        searchText,
         cardFilter,
         onFilterClick,
         catChecked,
-        onCatClick
+        onCatClick,
+        showGrid,
+        onGridClick
     } = useContext(FilterContext);
 
     return <div className='card-filter'>
         <ButtonGroup className="mb-2">
             <ToggleButton
-                className="cat-toggle"
+                className="toggle"
                 id="toggle-check"
                 type="checkbox"
                 variant={catChecked ? 'warning' : 'secondary'}
@@ -29,6 +30,18 @@ function CardFilter() {
                 onChange={() => onCatClick()}
             >
                 <FontAwesomeIcon icon={faCat} />
+            </ToggleButton>
+            <ToggleButton
+                className="toggle"
+                id="grid-check"
+                type="checkbox"
+                variant={showGrid ? 'warning' : 'secondary'}
+
+                checked={showGrid}
+                value="true"
+                onChange={() => onGridClick()}
+            >
+                <FontAwesomeIcon icon={showGrid ? faGripLines : faGrip} />
             </ToggleButton>
         </ButtonGroup>
         {cardFilter.map(m => (
