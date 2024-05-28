@@ -1,0 +1,23 @@
+.zoom-container {
+    position: sticky;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    top: 60px;
+
+    .zoom-wrapper {
+        position: absolute;
+
+        .zoom-image {
+            border-radius: 4px;
+        }
+
+        .back-arrow {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            height: 30px;
+            width: 30px;
+        }
+    }
+}

@@ -12,8 +12,6 @@ function CardList({ allCards }) {
 
     // apply cat spill restrictions
     const catFreeCards = allCards.filter(c => !catChecked || !catSpill.banned.includes(c.stub));
-    // mark partials
-    catFreeCards.forEach(c => c.partial = catChecked && catSpill.partial.includes(c.stub));
     // apply dice filter
     const filteredCards = catFreeCards.filter(c => !magicFilter.length || (c.dice || []).some(d => magicFilter.includes(d)));
     // group

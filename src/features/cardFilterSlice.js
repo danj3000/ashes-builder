@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export const cardFilterSlice = createSlice({
-  name: 'counter',
+  name: 'cardFilter',
   initialState,
   reducers: {
     toggleCatSpill: (state) => {
