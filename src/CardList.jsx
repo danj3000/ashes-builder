@@ -4,8 +4,11 @@ import Accordion from 'react-bootstrap/Accordion';
 import catSpill from './data/catspill.json';
 import { useSelector } from 'react-redux';
 import { imageUrl } from './util';
+import { useDispatch } from "react-redux";
+import { zoomCard } from "./features/viewerSlice";
 
 function CardList({ allCards }) {
+    const dispatch = useDispatch();
     const catChecked = useSelector((state) => state.cardFilter.catSpill)
     const showGrid = useSelector((state) => state.cardFilter.gridView)
     const magicFilter = useSelector((state) => state.cardFilter.magicFilter)
@@ -30,7 +33,7 @@ function CardList({ allCards }) {
                         {
                             showGrid ? (
                                 <div className='gallery-grid'>
-                                    {groupedCards[groupKey].map((card) => <img key={card.stub} className="gallery-card-image" src={imageUrl(card.stub)} />)}
+                                    {groupedCards[groupKey].map((card) => <img key={card.stub} className="gallery-card-image" src={imageUrl(card.stub)} onClick={() => dispatch(zoomCard(card))} />)}
                                 </div>
                             )
                                 :

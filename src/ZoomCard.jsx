@@ -1,6 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { imageUrl } from "./util";
-import { faCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { clearZoom } from "./features/viewerSlice";
 import './ZoomCard.css';
