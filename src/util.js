@@ -1,5 +1,3 @@
-import React from 'react';
-
 export function imageUrl(cardStub) {
     if (cardStub && cardStub.includes('http')) {
         return cardStub;
@@ -9,5 +7,3 @@ export function imageUrl(cardStub) {
     }
     return `https://cdn.ashes.live/images/cards/${cardStub}.jpg`;
 }
-
-export const FilterContext = React.createContext(null);

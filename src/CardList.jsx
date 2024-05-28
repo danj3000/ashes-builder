@@ -2,22 +2,20 @@ import './CardList.css';
 import CardListItem from './CardListItem';
 import Accordion from 'react-bootstrap/Accordion';
 import catSpill from './data/catspill.json';
-import { useContext } from 'react';
-import { FilterContext, imageUrl } from './util';
+import { useSelector } from 'react-redux';
+import { imageUrl } from './util';
 
 function CardList({ allCards }) {
-    const {
-        cardFilter,
-        catChecked,
-        showGrid
-    } = useContext(FilterContext);
+    const catChecked = useSelector((state) => state.cardFilter.catSpill)
+    const showGrid = useSelector((state) => state.cardFilter.gridView)
+    const magicFilter = useSelector((state) => state.cardFilter.magicFilter)
 
     // apply cat spill restrictions
     const catFreeCards = allCards.filter(c => !catChecked || !catSpill.banned.includes(c.stub));
     // mark partials
     catFreeCards.forEach(c => c.partial = catChecked && catSpill.partial.includes(c.stub));
     // apply dice filter
-    const filteredCards = catFreeCards.filter(c => !cardFilter.length || (c.dice || []).some(d => cardFilter.includes(d)));
+    const filteredCards = catFreeCards.filter(c => !magicFilter.length || (c.dice || []).some(d => magicFilter.includes(d)));
     // group
     const groupedCards = filteredCards.reduce((group, card) => {
         const { type } = card;
@@ -34,11 +32,11 @@ function CardList({ allCards }) {
                         {
                             showGrid ? (
                                 <div className='gallery-grid'>
-                                    {groupedCards[groupKey].map((card) => <img key={card} className="gallery-card-image" src={imageUrl(card.stub)} />)}
+                                    {groupedCards[groupKey].map((card) => <img key={card.stub} className="gallery-card-image" src={imageUrl(card.stub)} />)}
                                 </div>
                             )
                                 :
-                                groupedCards[groupKey].map((card) => <CardListItem key={card} card={card} />)
+                                groupedCards[groupKey].map((card) => <CardListItem key={card.stub} card={card} />)
                         }
 
                     </Accordion.Body>

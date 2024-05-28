@@ -1,21 +1,17 @@
 import { ButtonGroup, Dropdown, ToggleButton } from "react-bootstrap";
 import './CardFilter.css';
 import { Magic } from "./constants";
-import { FilterContext } from "./util";
-import { useContext } from "react";
 import SimpleDie from "./SimpleDie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCat, faGrip, faGripLines } from "@fortawesome/free-solid-svg-icons";
+import { toggleCatSpill, toggleGridView, toggleMagicFilter } from "./features/cardFilterSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function CardFilter() {
-    const {
-        cardFilter,
-        onFilterClick,
-        catChecked,
-        onCatClick,
-        showGrid,
-        onGridClick
-    } = useContext(FilterContext);
+    const dispatch = useDispatch()
+    const catChecked = useSelector((state) => state.cardFilter.catSpill)
+    const showGrid = useSelector((state) => state.cardFilter.gridView)
+    const magicFilter = useSelector((state) => state.cardFilter.magicFilter)
 
     return <div className='card-filter'>
         <ButtonGroup className="mb-2">
@@ -27,7 +23,7 @@ function CardFilter() {
 
                 checked={catChecked}
                 value="1"
-                onChange={() => onCatClick()}
+                onChange={() => dispatch(toggleCatSpill())}
             >
                 <FontAwesomeIcon icon={faCat} />
             </ToggleButton>
@@ -39,13 +35,13 @@ function CardFilter() {
 
                 checked={showGrid}
                 value="true"
-                onChange={() => onGridClick()}
+                onChange={() => dispatch(toggleGridView())}
             >
                 <FontAwesomeIcon icon={showGrid ? faGripLines : faGrip} />
             </ToggleButton>
         </ButtonGroup>
-        {cardFilter.map(m => (
-            <SimpleDie key={m} magic={m} onClick={(magic) => onFilterClick(magic)} />
+        {magicFilter.map(m => (
+            <SimpleDie key={m} magic={m} onClick={(magic) => dispatch(toggleMagicFilter(magic))} />
         ))}
 
         <Dropdown>
@@ -60,7 +56,7 @@ function CardFilter() {
 
             <Dropdown.Menu>
                 {Object.values(Magic).map(magic => (
-                    <Dropdown.Item href='#' key={magic} onClick={() => onFilterClick(magic)}>
+                    <Dropdown.Item href='#' key={magic} onClick={() => dispatch(toggleMagicFilter(magic))}>
                         {magic}
                     </Dropdown.Item>
                 ))}
