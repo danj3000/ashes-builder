@@ -10,6 +10,8 @@
 
         .zoom-image {
             border-radius: 4px;
+            padding: 5px;
+            background-color: silver;
         }
 
         .back-arrow {
