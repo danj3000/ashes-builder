@@ -1,7 +1,6 @@
 import './CardList.css';
 import CardListItem from './CardListItem';
 import Accordion from 'react-bootstrap/Accordion';
-import catSpill from './data/catspill.json';
 import { useSelector } from 'react-redux';
 import { imageUrl } from './util';
 import { useDispatch } from "react-redux";
@@ -14,7 +13,7 @@ function CardList({ allCards }) {
     const magicFilter = useSelector((state) => state.cardFilter.magicFilter)
 
     // apply cat spill restrictions
-    const catFreeCards = allCards.filter(c => !catChecked || !catSpill.banned.includes(c.stub));
+    const catFreeCards = allCards.filter(c => !catChecked || !c.banned);
     // apply dice filter
     const filteredCards = catFreeCards.filter(c => !magicFilter.length || (c.dice || []).some(d => magicFilter.includes(d)));
     // group
@@ -24,6 +23,7 @@ function CardList({ allCards }) {
         group[type].push(card);
         return group;
     }, {});
+
     return (
         <Accordion className="card-list">
             {Object.keys(groupedCards).map((groupKey) => (
@@ -39,7 +39,6 @@ function CardList({ allCards }) {
                                 :
                                 groupedCards[groupKey].map((card) => <CardListItem key={card.stub} card={card} />)
                         }
-
                     </Accordion.Body>
                 </Accordion.Item>
             ))}

@@ -7,9 +7,14 @@ const initialState = {
   allCards: loadCards(),
   catSpill: catSpill
 };
+
 function loadCards() {
   return allCards.results
-    .map(c => Object.assign({ partial: catSpill.partial.includes(c.stub) }, c))
+    .map(c => Object.assign({
+      banned: catSpill.banned.includes(c.stub),
+      partial: catSpill.partial.includes(c.stub)
+    },
+      c))
     .sort((a, b) => a.type < b.type ? -1 : 1);
 }
 
