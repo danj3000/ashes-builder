@@ -6,6 +6,7 @@ import { imageUrl } from './util';
 import { useDispatch } from "react-redux";
 import { zoomCard } from "./features/viewerSlice";
 import React from 'react';
+import classNames from 'classnames';
 
 function CardList() {
     const dispatch = useDispatch();
@@ -37,11 +38,15 @@ function CardList() {
                         {
                             showGrid ? (
                                 <div className='gallery-grid'>
-                                    {groupedCards[groupKey].map((card) => <img key={card.stub}
-                                        className="gallery-card-image"
-                                        src={imageUrl(card.stub)}
-                                        onClick={() => dispatch(zoomCard(card))} />)
-                                    }
+                                    {groupedCards[groupKey].map((card) => {
+                                        const classes = classNames('gallery-card-image', {
+                                            partial: card.partial
+                                        });
+                                        return <img key={card.stub}
+                                            className={classes}
+                                            src={imageUrl(card.stub)}
+                                            onClick={() => dispatch(zoomCard(card))} />
+                                    })}
                                 </div>
                             )
                                 :
