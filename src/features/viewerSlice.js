@@ -19,25 +19,45 @@ function loadCards() {
 
   results.forEach(c => {
     if (c.conjurations) {
-      c.linkedCards = allCards.results.filter(ac => c.conjurations.some(c => c.stub === ac.stub))
+      c.linkedCards = getConjurations(c)
     }
   })
   return results;
 }
+
+function getConjurations(c) {
+  return allCards.results.filter(ac => c.conjurations.some(c => c.stub === ac.stub))
+}
+
 export const viewerSlice = createSlice({
   name: 'viewer',
   initialState,
   reducers: {
     zoomCard: (state, action) => {
-      state.zoomCards = Array.isArray(action.payload) ? action.payload : [action.payload];
+      state.zoomIndex = 0;
+
+      if (Array.isArray(action.payload)) {
+        state.zoomCards = action.payload
+      } else {
+        const toAdd = [action.payload];
+        if (action.payload.conjurations) {
+          toAdd.push(...getConjurations(action.payload))
+        }
+        state.zoomCards = toAdd;
+      }
     },
     clearZoom: (state) => {
-      state.zoomCards = []
+      state.zoomCards = [];
+      state.zoomIndex = 0;
+
+    },
+    setZoomIndex: (state, action) => {
+      state.zoomIndex = action.payload;
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { zoomCard, clearZoom } = viewerSlice.actions
+export const { zoomCard, clearZoom, setZoomIndex } = viewerSlice.actions
 
 export default viewerSlice.reducer

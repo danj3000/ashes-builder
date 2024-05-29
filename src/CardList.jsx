@@ -37,7 +37,11 @@ function CardList() {
                         {
                             showGrid ? (
                                 <div className='gallery-grid'>
-                                    {groupedCards[groupKey].map((card) => <img key={card.stub} className="gallery-card-image" src={imageUrl(card.stub)} onClick={() => dispatch(zoomCard(card))} />)}
+                                    {groupedCards[groupKey].map((card) => <img key={card.stub}
+                                        className="gallery-card-image"
+                                        src={imageUrl(card.stub)}
+                                        onClick={() => dispatch(zoomCard(card))} />)
+                                    }
                                 </div>
                             )
                                 :

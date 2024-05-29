@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { useDispatch } from "react-redux";
 import { zoomCard } from "./features/viewerSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare, faSquareArrowUpRight } from "@fortawesome/free-solid-svg-icons";
+import { faSquareArrowUpRight } from "@fortawesome/free-solid-svg-icons";
 
 function CardListItem({ card }) {
     const dispatch = useDispatch();
