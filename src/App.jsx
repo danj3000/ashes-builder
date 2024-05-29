@@ -8,18 +8,20 @@ import { useSelector } from 'react-redux';
 import ZoomCard from './ZoomCard';
 
 function App() {
-  const allCards = useSelector((state) => state.viewer.allCards);
-  const selectedCard = useSelector((state) => state.viewer.selectedCard);
+  let zoomCards = useSelector((state) => state.viewer.zoomCards);
+  if (!Array.isArray(zoomCards)) {
+    zoomCards = [zoomCards];
+  }
   return (
     <Container >
       <Row className="justify-content-md-center">
         <Col xs={12} className='cardlist-container' >
-          {selectedCard && (
-            <ZoomCard card={selectedCard} />
+          {zoomCards.length > 0 && (
+            <ZoomCard cards={zoomCards} />
           )}
           <>
             <CardFilter />
-            <CardList allCards={allCards} />
+            <CardList />
           </>
 
         </Col>

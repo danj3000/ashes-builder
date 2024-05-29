@@ -5,9 +5,13 @@ import { useSelector } from 'react-redux';
 import { imageUrl } from './util';
 import { useDispatch } from "react-redux";
 import { zoomCard } from "./features/viewerSlice";
+import React from 'react';
 
-function CardList({ allCards }) {
+function CardList() {
     const dispatch = useDispatch();
+    const allCards = useSelector((state) => state.viewer.allCards);
+
+    // what are the filters (x3)
     const catChecked = useSelector((state) => state.cardFilter.catSpill)
     const showGrid = useSelector((state) => state.cardFilter.gridView)
     const magicFilter = useSelector((state) => state.cardFilter.magicFilter)

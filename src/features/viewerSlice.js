@@ -3,30 +3,36 @@ import allCards from '../data/all-cards.json';
 import catSpill from '../data/catspill.json';
 
 const initialState = {
-  selectedCard: null,
+  zoomCards: [],
   allCards: loadCards(),
   catSpill: catSpill
 };
 
 function loadCards() {
-  return allCards.results
+  const results = allCards.results
     .map(c => Object.assign({
       banned: catSpill.banned.includes(c.stub),
       partial: catSpill.partial.includes(c.stub)
     },
       c))
     .sort((a, b) => a.type < b.type ? -1 : 1);
-}
 
+  results.forEach(c => {
+    if (c.conjurations) {
+      c.linkedCards = allCards.results.filter(ac => c.conjurations.some(c => c.stub === ac.stub))
+    }
+  })
+  return results;
+}
 export const viewerSlice = createSlice({
   name: 'viewer',
   initialState,
   reducers: {
     zoomCard: (state, action) => {
-      state.selectedCard = action.payload
+      state.zoomCards = Array.isArray(action.payload) ? action.payload : [action.payload];
     },
     clearZoom: (state) => {
-      state.selectedCard = null
+      state.zoomCards = []
     }
   },
 })

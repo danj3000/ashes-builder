@@ -9,7 +9,7 @@
         position: absolute;
 
         .zoom-image {
-            border-radius: 4px;
+            border-radius: px;
             padding: 5px;
             background-color: silver;
         }
