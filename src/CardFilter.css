@@ -17,4 +17,11 @@
     .filter-button {
         margin-top: 5px;
     }
+
+    .dice-rack {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        margin-right: 5px;
+    }
 }

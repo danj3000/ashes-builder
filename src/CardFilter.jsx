@@ -40,10 +40,11 @@ function CardFilter() {
                 <FontAwesomeIcon icon={showGrid ? faGripLines : faGrip} />
             </ToggleButton>
         </ButtonGroup>
-        {magicFilter.map(m => (
-            <SimpleDie key={m} magic={m} onClick={(magic) => dispatch(toggleMagicFilter(magic))} />
-        ))}
-
+        <div className='dice-rack'>
+            {magicFilter.map(m => (
+                <SimpleDie key={m} magic={m} onClick={(magic) => dispatch(toggleMagicFilter(magic))} />
+            ))}
+        </div>
         <Dropdown>
             <Dropdown.Toggle
                 className='filter-button'

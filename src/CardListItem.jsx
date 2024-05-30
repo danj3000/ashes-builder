@@ -6,6 +6,7 @@ import { zoomCard } from "./features/viewerSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquareArrowUpRight } from "@fortawesome/free-solid-svg-icons";
 import BuilderControls from "./BuilderControls";
+import { ConjurationTypes } from "./constants";
 
 function CardListItem({ card }) {
     const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function CardListItem({ card }) {
             }
             <div>{card.text}</div>
         </div>
-        <BuilderControls card={card} />
+        {!ConjurationTypes.includes(card.type) && <BuilderControls card={card} />}
     </Card>
 }
 

@@ -1,13 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
 import allCards from '../data/all-cards.json';
 import catSpill from '../data/catspill.json';
+import { CardType } from '../constants';
 
 const initialState = {
   zoomCards: [],
   allCards: loadCards(),
   catSpill: catSpill,
   buildMode: true,
-  selection: []
+  selection: [],
+  selectedDice: [],
+  selectedPb: null
 };
 
 function loadCards() {
@@ -29,6 +32,18 @@ function loadCards() {
 
 function getConjurations(c) {
   return allCards.results.filter(ac => c.conjurations.some(c => c.stub === ac.stub))
+}
+
+function getDiceTypes(selection) {
+  const result = selection.reduce((agg, s) => {
+    const dice = s.card.altDice || s.card.dice || [];
+    agg.push(...dice);
+    return agg;
+  }, [])
+
+  return result
+    .filter((value, index, array) => array.indexOf(value) === index)
+    .filter((d) => d !== 'basic');
 }
 
 export const viewerSlice = createSlice({
@@ -57,14 +72,20 @@ export const viewerSlice = createSlice({
       state.zoomIndex = action.payload;
     },
     selectCard: (state, action) => {
+      if (action.payload.type === CardType.Phoenixborn) {
+        state.selectedPb = action.payload;
+        return
+      }
+
       const existing = state.selection.find(s => s.stub === action.payload.stub)
       if (existing) {
         if (existing.count < 3) {
           existing.count++;
         }
       } else {
-        state.selection.push({ stub: action.payload.stub, count: 1 });
+        state.selection.push({ stub: action.payload.stub, card: action.payload, count: 1 });
       }
+      state.selectedDice = getDiceTypes(state.selection);
     },
     reduceCard: (state, action) => {
       const existing = state.selection.find(s => s.stub === action.payload.stub)
@@ -75,6 +96,7 @@ export const viewerSlice = createSlice({
         } else {
           existing.count--;
         }
+        state.selectedDice = getDiceTypes(state.selection);
       }
     }
   },

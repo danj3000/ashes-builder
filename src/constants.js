@@ -13,6 +13,8 @@ export const CardType = {
     Behaviour: 'Behaviour'
 };
 
+export const ConjurationTypes = [CardType.Conjuration, CardType.ConjuredAlteration];
+
 export const Magic = {
     Ceremonial: 'ceremonial',
     Charm: 'charm',
