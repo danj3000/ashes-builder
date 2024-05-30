@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import { imageUrl } from './util';
 import { useDispatch } from "react-redux";
 import { zoomCard } from "./features/viewerSlice";
-import React from 'react';
 import classNames from 'classnames';
 
 function CardList() {
@@ -20,7 +19,9 @@ function CardList() {
     // apply cat spill restrictions
     const catFreeCards = allCards.filter(c => !catChecked || !c.banned);
     // apply dice filter
-    const filteredCards = catFreeCards.filter(c => !magicFilter.length || (c.dice || []).some(d => magicFilter.includes(d)));
+    const filteredCards = catFreeCards.filter(c => !magicFilter.length ||
+        (c.altDice || c.dice || []).some(d => magicFilter.includes(d))
+    );
     // group
     const groupedCards = filteredCards.reduce((group, card) => {
         const { type } = card;
