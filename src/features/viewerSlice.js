@@ -34,13 +34,16 @@ function getConjurations(c) {
   return allCards.results.filter(ac => c.conjurations.some(c => c.stub === ac.stub))
 }
 
-function getDiceTypes(selection) {
+function getDiceTypes(selection, selectedPb) {
   const result = selection.reduce((agg, s) => {
     const dice = s.card.altDice || s.card.dice || [];
     agg.push(...dice);
     return agg;
   }, [])
 
+  if (selectedPb && selectedPb.dice) {
+    result.push(...selectedPb.dice);
+  }
   return result
     .filter((value, index, array) => array.indexOf(value) === index)
     .filter((d) => d !== 'basic');
@@ -50,6 +53,9 @@ export const viewerSlice = createSlice({
   name: 'viewer',
   initialState,
   reducers: {
+    toggleBuildMode: (state) => {
+      state.buildMode = !state.buildMode
+    },
     zoomCard: (state, action) => {
       state.zoomIndex = 0;
 
@@ -74,18 +80,18 @@ export const viewerSlice = createSlice({
     selectCard: (state, action) => {
       if (action.payload.type === CardType.Phoenixborn) {
         state.selectedPb = action.payload;
-        return
-      }
 
-      const existing = state.selection.find(s => s.stub === action.payload.stub)
-      if (existing) {
-        if (existing.count < 3) {
-          existing.count++;
-        }
       } else {
-        state.selection.push({ stub: action.payload.stub, card: action.payload, count: 1 });
+        const existing = state.selection.find(s => s.stub === action.payload.stub)
+        if (existing) {
+          if (existing.count < 3) {
+            existing.count++;
+          }
+        } else {
+          state.selection.push({ stub: action.payload.stub, card: action.payload, count: 1 });
+        }
       }
-      state.selectedDice = getDiceTypes(state.selection);
+      state.selectedDice = getDiceTypes(state.selection, state.selectedPb);
     },
     reduceCard: (state, action) => {
       const existing = state.selection.find(s => s.stub === action.payload.stub)
@@ -96,13 +102,13 @@ export const viewerSlice = createSlice({
         } else {
           existing.count--;
         }
-        state.selectedDice = getDiceTypes(state.selection);
+        state.selectedDice = getDiceTypes(state.selection, state.selectedPb);
       }
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { zoomCard, clearZoom, setZoomIndex, selectCard, reduceCard } = viewerSlice.actions
+export const { toggleBuildMode, zoomCard, clearZoom, setZoomIndex, selectCard, reduceCard } = viewerSlice.actions
 
 export default viewerSlice.reducer

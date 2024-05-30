@@ -11,6 +11,7 @@ import { ConjurationTypes } from "./constants";
 function CardListItem({ card }) {
     const dispatch = useDispatch();
     const catChecked = useSelector((state) => state.cardFilter.catSpill)
+    const buildMode = useSelector((state) => state.viewer.buildMode)
 
     const classes = classNames('card-list-item', {
         partial: card.partial && catChecked
@@ -26,7 +27,7 @@ function CardListItem({ card }) {
             }
             <div>{card.text}</div>
         </div>
-        {!ConjurationTypes.includes(card.type) && <BuilderControls card={card} />}
+        {buildMode && !ConjurationTypes.includes(card.type) && <BuilderControls card={card} />}
     </Card>
 }
 

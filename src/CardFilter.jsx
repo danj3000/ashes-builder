@@ -3,15 +3,17 @@ import './CardFilter.css';
 import { Magic } from "./constants";
 import SimpleDie from "./SimpleDie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCat, faGrip, faGripLines } from "@fortawesome/free-solid-svg-icons";
+import { faCat, faGrip, faGripLines, faWrench } from "@fortawesome/free-solid-svg-icons";
 import { toggleCatSpill, toggleGridView, toggleMagicFilter } from "./features/cardFilterSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { toggleBuildMode } from "./features/viewerSlice";
 
 function CardFilter() {
     const dispatch = useDispatch()
     const catChecked = useSelector((state) => state.cardFilter.catSpill)
     const showGrid = useSelector((state) => state.cardFilter.gridView)
     const magicFilter = useSelector((state) => state.cardFilter.magicFilter)
+    const buildMode = useSelector((state) => state.viewer.buildMode)
 
     return <div className='card-filter'>
         <ButtonGroup className="mb-2">
@@ -38,6 +40,18 @@ function CardFilter() {
                 onChange={() => dispatch(toggleGridView())}
             >
                 <FontAwesomeIcon icon={showGrid ? faGripLines : faGrip} />
+            </ToggleButton>
+            <ToggleButton
+                className="toggle"
+                id="mode-check"
+                type="checkbox"
+                variant={buildMode ? 'warning' : 'secondary'}
+
+                checked={buildMode}
+                value="true"
+                onChange={() => dispatch(toggleBuildMode())}
+            >
+                <FontAwesomeIcon icon={faWrench} />
             </ToggleButton>
         </ButtonGroup>
         <div className='dice-rack'>
