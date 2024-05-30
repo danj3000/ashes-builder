@@ -7,7 +7,7 @@ const initialState = {
   zoomCards: [],
   allCards: loadCards(),
   catSpill: catSpill,
-  buildMode: true,
+  buildMode: false,
   selection: [],
   selectedDice: [],
   selectedPb: null
