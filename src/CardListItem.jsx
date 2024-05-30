@@ -1,16 +1,18 @@
 import { Card } from "react-bootstrap";
 import { imageUrl } from "./util";
 import classNames from "classnames";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { zoomCard } from "./features/viewerSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquareArrowUpRight } from "@fortawesome/free-solid-svg-icons";
+import BuilderControls from "./BuilderControls";
 
 function CardListItem({ card }) {
     const dispatch = useDispatch();
+    const catChecked = useSelector((state) => state.cardFilter.catSpill)
 
     const classes = classNames('card-list-item', {
-        partial: card.partial
+        partial: card.partial && catChecked
     });
     const showLinkedCard = card.linkedCards;
     return <Card className={classes}>
@@ -23,6 +25,7 @@ function CardListItem({ card }) {
             }
             <div>{card.text}</div>
         </div>
+        <BuilderControls card={card} />
     </Card>
 }
 

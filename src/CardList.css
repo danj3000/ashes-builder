@@ -57,5 +57,32 @@
             margin-left: 8px;
             cursor: pointer;
         }
+
+        :last-child {
+            margin-left: auto;
+
+        }
+
+        .builder-controls {
+            display: flex;
+            flex-direction: column;
+
+            .inc-control {
+                height: 30px;
+                width: 30px;
+            }
+
+            .count-control {
+                font-size: 20px;
+                line-height: 30px;
+                height: 30px;
+            }
+
+            .dec-control {
+                height: 30px;
+                width: 30px;
+
+            }
+        }
     }
 }

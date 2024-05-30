@@ -4,13 +4,19 @@ import { clearZoom, setZoomIndex } from "./features/viewerSlice";
 import './ZoomCard.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleArrowLeft, faCircleArrowRight } from "@fortawesome/free-solid-svg-icons";
+import classNames from "classnames";
 
 function ZoomCard({ cards }) {
     const dispatch = useDispatch();
     const zoomIndex = useSelector((state) => state.viewer.zoomIndex);
+    const buildMode = useSelector((state) => state.viewer.buildMode);
+
+    const classes = classNames("zoom-container", {
+        builder: buildMode
+    })
 
     return (
-        <div className="zoom-container">
+        <div className={classes}>
             <div className='zoom-wrapper'>
                 {zoomIndex > 0 && <FontAwesomeIcon icon={faCircleArrowLeft}
                     className='zoom-nav-left'

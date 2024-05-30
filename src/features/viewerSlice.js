@@ -5,7 +5,9 @@ import catSpill from '../data/catspill.json';
 const initialState = {
   zoomCards: [],
   allCards: loadCards(),
-  catSpill: catSpill
+  catSpill: catSpill,
+  buildMode: true,
+  selection: []
 };
 
 function loadCards() {
@@ -53,11 +55,32 @@ export const viewerSlice = createSlice({
     },
     setZoomIndex: (state, action) => {
       state.zoomIndex = action.payload;
+    },
+    selectCard: (state, action) => {
+      const existing = state.selection.find(s => s.stub === action.payload.stub)
+      if (existing) {
+        if (existing.count < 3) {
+          existing.count++;
+        }
+      } else {
+        state.selection.push({ stub: action.payload.stub, count: 1 });
+      }
+    },
+    reduceCard: (state, action) => {
+      const existing = state.selection.find(s => s.stub === action.payload.stub)
+      if (existing) {
+        if (existing.count === 1) {
+          const index = state.selection.indexOf(existing);
+          state.selection.splice(index, 1);
+        } else {
+          existing.count--;
+        }
+      }
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { zoomCard, clearZoom, setZoomIndex } = viewerSlice.actions
+export const { zoomCard, clearZoom, setZoomIndex, selectCard, reduceCard } = viewerSlice.actions
 
 export default viewerSlice.reducer
