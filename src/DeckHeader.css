@@ -6,6 +6,27 @@
     border: silver solid 2px;
     position: sticky;
     top: 0px;
+
+
+    .gallery-grid {
+        flex-wrap: nowrap;
+        justify-content: unset;
+        overflow-x: scroll;
+        /* scrollbar-width: none; */
+
+        .gallery-card-image {
+            width: 20%;
+        }
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .deck-wrapper {
+
+        .gallery-grid {
+            scrollbar-width: none;
+        }
+    }
 }
 
 .deck-header {
