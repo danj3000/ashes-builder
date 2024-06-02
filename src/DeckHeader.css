@@ -16,6 +16,7 @@
         line-height: 70px;
         margin-left: auto;
         width: 90px;
+        text-align: right;
 
         .count-icon {
             margin-right: 2px;
