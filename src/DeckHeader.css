@@ -1,14 +1,17 @@
-.deck-header {
-    /* height: 48px; */
-    display: flex;
-    flex-direction: row;
-    position: sticky;
-    top: 0px;
+.deck-wrapper {
     z-index: 10;
     padding: 4px;
     background-color: white;
     border-radius: 4px;
     border: silver solid 2px;
+    position: sticky;
+    top: 0px;
+}
+
+.deck-header {
+    /* height: 48px; */
+    display: flex;
+    flex-direction: row;
 
     .card-count {
         font-size: 32px;

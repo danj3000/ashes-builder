@@ -3,25 +3,26 @@
     max-width: 500px !important;
 }
 
+
+.gallery-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+
+    .gallery-card-image {
+        width: 30%;
+        border-radius: 4px;
+
+        &.partial {
+            border: 3px solid rgba(255, 0, 0, 0.5);
+        }
+    }
+}
+
 .card-list {
     .accordion-body {
         padding: unset;
-    }
-
-    .gallery-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        justify-content: center;
-
-        .gallery-card-image {
-            width: 30%;
-            border-radius: 4px;
-
-            &.partial {
-                border: 3px solid rgba(255, 0, 0, 0.5);
-            }
-        }
     }
 
     .card-list-item {

@@ -2,13 +2,9 @@ import './CardList.css';
 import CardListItem from './CardListItem';
 import Accordion from 'react-bootstrap/Accordion';
 import { useSelector } from 'react-redux';
-import { imageUrl } from './util';
-import { useDispatch } from "react-redux";
-import { zoomCard } from "./features/viewerSlice";
-import classNames from 'classnames';
+import CardGrid from './CardGrid';
 
 function CardList() {
-    const dispatch = useDispatch();
     const allCards = useSelector((state) => state.viewer.allCards);
 
     // what are the filters (x3)
@@ -38,17 +34,7 @@ function CardList() {
                     <Accordion.Body>
                         {
                             showGrid ? (
-                                <div className='gallery-grid'>
-                                    {groupedCards[groupKey].map((card) => {
-                                        const classes = classNames('gallery-card-image', {
-                                            partial: card.partial
-                                        });
-                                        return <img key={card.stub}
-                                            className={classes}
-                                            src={imageUrl(card.stub)}
-                                            onClick={() => dispatch(zoomCard(card))} />
-                                    })}
-                                </div>
+                                <CardGrid cards={groupedCards[groupKey]} />
                             )
                                 :
                                 groupedCards[groupKey].map((card) => <CardListItem key={card.stub} card={card} />)
