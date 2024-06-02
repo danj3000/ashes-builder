@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux';
 import './DeckHeader.css'
 import SimpleDie from './SimpleDie';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClipboardList } from '@fortawesome/free-solid-svg-icons';
 
 function DeckHeader() {
     const selectedPb = useSelector((state) => state.viewer.selectedPb);
@@ -18,7 +20,9 @@ function DeckHeader() {
             <SimpleDie key={m} magic={m} />
 
         ))}</div>
-        <div className='card-count'>{selectedCount}</div>
+        <div className='card-count'>
+            <FontAwesomeIcon className='count-icon' icon={faClipboardList} />
+            {selectedCount}</div>
     </div>
 }
 

@@ -3,7 +3,7 @@ import './CardFilter.css';
 import { Magic } from "./constants";
 import SimpleDie from "./SimpleDie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCat, faGrip, faGripLines, faWrench } from "@fortawesome/free-solid-svg-icons";
+import { faCat, faGrip, faGripLines, faHammer } from "@fortawesome/free-solid-svg-icons";
 import { toggleCatSpill, toggleGridView, toggleMagicFilter } from "./features/cardFilterSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleBuildMode } from "./features/viewerSlice";
@@ -51,7 +51,7 @@ function CardFilter() {
                 value="true"
                 onChange={() => dispatch(toggleBuildMode())}
             >
-                <FontAwesomeIcon icon={faWrench} />
+                <FontAwesomeIcon icon={faHammer} />
             </ToggleButton>
         </ButtonGroup>
         <div className='dice-rack'>
