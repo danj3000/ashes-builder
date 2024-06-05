@@ -11,13 +11,20 @@ function CardList() {
     const catChecked = useSelector((state) => state.cardFilter.catSpill)
     const showGrid = useSelector((state) => state.cardFilter.gridView)
     const magicFilter = useSelector((state) => state.cardFilter.magicFilter)
+    const deckCards = useSelector((state) => state.cardFilter.deckCards);
+    const selection = useSelector((state) => state.viewer.selection);
 
-    // apply cat spill restrictions
-    const catFreeCards = allCards.filter(c => !catChecked || !c.banned);
-    // apply dice filter
-    const filteredCards = catFreeCards.filter(c => !magicFilter.length ||
-        (c.altDice || c.dice || []).some(d => magicFilter.includes(d))
-    );
+    let filteredCards = [];
+    if (deckCards) {
+        filteredCards = allCards.filter(c => selection.find(s => s.card === c))
+    } else {
+        // apply cat spill restrictions
+        const catFreeCards = allCards.filter(c => !catChecked || !c.banned);
+        // apply dice filter
+        filteredCards = catFreeCards.filter(c => !magicFilter.length ||
+            (c.altDice || c.dice || []).some(d => magicFilter.includes(d))
+        );
+    }
     // group
     const groupedCards = filteredCards.reduce((group, card) => {
         const { type } = card;
@@ -30,7 +37,7 @@ function CardList() {
         <Accordion className="card-list">
             {Object.keys(groupedCards).map((groupKey) => (
                 <Accordion.Item eventKey={groupKey} key={groupKey}>
-                    <Accordion.Header>{groupKey}</Accordion.Header>
+                    <Accordion.Header>{`${groupKey} (${groupedCards[groupKey].length})`}</Accordion.Header>
                     <Accordion.Body>
                         {
                             showGrid ? (

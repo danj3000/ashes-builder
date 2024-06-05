@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   catSpill: true,
   gridView: false,
+  deckCards: false,
   magicFilter: []
 };
 
@@ -23,11 +24,14 @@ export const cardFilterSlice = createSlice({
       } else {
         state.magicFilter.push(value);
       }
-    }
+    },
+    toggleDeckCards: (state) => {
+      state.deckCards = !state.deckCards
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { toggleCatSpill, toggleGridView, toggleMagicFilter } = cardFilterSlice.actions
+export const { toggleCatSpill, toggleGridView, toggleMagicFilter, toggleDeckCards } = cardFilterSlice.actions
 
 export default cardFilterSlice.reducer

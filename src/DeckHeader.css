@@ -20,15 +20,6 @@
     }
 }
 
-@media screen and (max-width: 640px) {
-    .deck-wrapper {
-
-        .gallery-grid {
-            scrollbar-width: none;
-        }
-    }
-}
-
 .deck-header {
     /* height: 48px; */
     display: flex;
@@ -44,6 +35,10 @@
 
         .count-icon {
             margin-right: 2px;
+        }
+
+        .active {
+            color: orange;
         }
     }
 
