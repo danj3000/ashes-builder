@@ -3,6 +3,7 @@ import CardListItem from './CardListItem';
 import Accordion from 'react-bootstrap/Accordion';
 import { useSelector } from 'react-redux';
 import CardGrid from './CardGrid';
+import { Level } from './constants';
 
 function CardList() {
     const allCards = useSelector((state) => state.viewer.allCards);
@@ -13,6 +14,8 @@ function CardList() {
     const magicFilter = useSelector((state) => state.cardFilter.magicFilter)
     const deckCards = useSelector((state) => state.cardFilter.deckCards);
     const selection = useSelector((state) => state.viewer.selection);
+    const selectedPb = useSelector((state) => state.viewer.selectedPb);
+    const buildMode = useSelector((state) => state.viewer.buildMode);
 
     let filteredCards = [];
     if (deckCards) {
@@ -22,8 +25,12 @@ function CardList() {
         const catFreeCards = allCards.filter(c => !catChecked || !c.banned);
         // apply dice filter
         filteredCards = catFreeCards.filter(c => !magicFilter.length ||
-            (c.altDice || c.dice || []).some(d => magicFilter.includes(d))
+            (c.altDice || c.dice || []).some(d => magicFilter.includes(d)) ||
+            (c.dice || []).every((d => d === Level.Basic))
         );
+        if (buildMode && selectedPb) {
+            filteredCards = filteredCards.filter(c => !c.phoenixborn || c.phoenixborn === selectedPb.name);
+        }
     }
     // group
     const groupedCards = filteredCards.reduce((group, card) => {
