@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboardList } from '@fortawesome/free-solid-svg-icons';
 import { toggleDeckCards } from './features/cardFilterSlice';
 import classNames from 'classnames';
+import { zoomCard } from './features/viewerSlice';
 
 function DeckHeader() {
     const selectedPb = useSelector((state) => state.viewer.selectedPb);
@@ -25,7 +26,7 @@ function DeckHeader() {
     })
     return <div className='deck-wrapper'>
         <div className='deck-header'>
-            <div className={pbClass}></div>
+            <div className={pbClass} onClick={() => dispatch(zoomCard(selectedPb))}></div>
             <div className='dice-rack'>{diceTypes.map(m => (
                 <SimpleDie key={m} magic={m} />
 

@@ -10,12 +10,23 @@
     gap: 10px;
     justify-content: center;
 
-    .gallery-card-image {
-        width: 30%;
-        border-radius: 4px;
 
-        &.partial {
-            border: 3px solid rgba(255, 0, 0, 0.5);
+    .gallery-card-wrapper {
+        width: 30%;
+
+        .builder-controls {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+        }
+
+        .gallery-card-image {
+            border-radius: 4px;
+            width: 100%;
+
+            &.partial {
+                border: 3px solid rgba(255, 0, 0, 0.5);
+            }
         }
     }
 }
@@ -67,35 +78,25 @@
         .builder-controls {
             display: flex;
             flex-direction: column;
-
-            .inc-control {
-                height: 30px;
-                width: 30px;
-                color: #DDD;
-                cursor: pointer;
-
-                &.active {
-                    color: grey
-                }
-            }
-
-            .count-control {
-                font-size: 20px;
-                line-height: 30px;
-                height: 30px;
-            }
-
-            .dec-control {
-                height: 30px;
-                width: 30px;
-
-                color: #DDD;
-                cursor: pointer;
-
-                &.active {
-                    color: grey
-                }
-            }
         }
     }
+}
+
+.builder-control {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    color: #DDD;
+
+    &.active {
+        color: grey
+    }
+
+}
+
+.count-control {
+    font-size: 20px;
+    line-height: 30px;
+    height: 30px;
+    width: 30px;
 }

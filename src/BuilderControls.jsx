@@ -9,10 +9,10 @@ function BuilderControls({ card }) {
     const selection = useSelector((state) => state.viewer.selection.find(s => s.stub === card.stub));
     const cardCount = selection?.count || 0;
     const dispatch = useDispatch();
-    const decClass = classNames("dec-control", {
+    const decClass = classNames("dec-control", "builder-control", {
         "active": cardCount > 0
     });
-    const incClass = classNames("inc-control", {
+    const incClass = classNames("inc-control", "builder-control", {
         "active": cardCount < 3
     });
 

@@ -13,6 +13,7 @@ function CardList() {
     const showGrid = useSelector((state) => state.cardFilter.gridView)
     const magicFilter = useSelector((state) => state.cardFilter.magicFilter)
     const deckCards = useSelector((state) => state.cardFilter.deckCards);
+    // build mode selections
     const selection = useSelector((state) => state.viewer.selection);
     const selectedPb = useSelector((state) => state.viewer.selectedPb);
     const buildMode = useSelector((state) => state.viewer.buildMode);
