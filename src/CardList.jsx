@@ -27,7 +27,7 @@ function CardList() {
         // apply dice filter
         filteredCards = catFreeCards.filter(c => !magicFilter.length ||
             (c.altDice || c.dice || []).some(d => magicFilter.includes(d)) ||
-            (c.dice || []).every((d => d === Level.Basic))
+            (c.dice && c.dice.every((d => d === Level.Basic)))
         );
         if (buildMode && selectedPb) {
             filteredCards = filteredCards.filter(c => !c.phoenixborn || c.phoenixborn === selectedPb.name);

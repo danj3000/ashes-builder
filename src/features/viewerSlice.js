@@ -35,16 +35,23 @@ function getConjurations(c) {
 }
 
 function getDiceTypes(selection, selectedPb) {
-  const result = selection.reduce((agg, s) => {
-    const dice = s.card.altDice || s.card.dice || [];
+  const diceResult = selection.reduce((agg, s) => {
+    const dice = s.card.dice || [];
     agg.push(...dice);
     return agg;
   }, [])
 
+  const altCards = selection.filter(s => s.card.altDice);
+  altCards.forEach(ac => {
+    if (!diceResult.some(dr => ac.card.altDice.includes(dr))) {
+      diceResult.push(ac.card.altDice[0])
+    }
+  });
+
   if (selectedPb && selectedPb.dice) {
-    result.push(...selectedPb.dice);
+    diceResult.push(...selectedPb.dice);
   }
-  return result
+  return diceResult
     .filter((value, index, array) => array.indexOf(value) === index)
     .filter((d) => d !== 'basic');
 }
