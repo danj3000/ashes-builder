@@ -4,7 +4,7 @@ import { Magic } from "./constants";
 import SimpleDie from "./SimpleDie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCat, faGrip, faGripLines, faHammer } from "@fortawesome/free-solid-svg-icons";
-import { toggleCatSpill, toggleGridView, toggleMagicFilter } from "./features/cardFilterSlice";
+import { toggleCatSpill, toggleDeckCards, toggleGridView, toggleMagicFilter } from "./features/cardFilterSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleBuildMode } from "./features/viewerSlice";
 
@@ -14,6 +14,7 @@ function CardFilter() {
     const showGrid = useSelector((state) => state.cardFilter.gridView)
     const magicFilter = useSelector((state) => state.cardFilter.magicFilter)
     const buildMode = useSelector((state) => state.viewer.buildMode)
+    const deckCards = useSelector((state) => state.cardFilter.deckCards)
 
     return <div className='card-filter'>
         <ButtonGroup className="mb-2">
@@ -49,7 +50,12 @@ function CardFilter() {
 
                 checked={buildMode}
                 value="true"
-                onChange={() => dispatch(toggleBuildMode())}
+                onChange={() => {
+                    dispatch(toggleBuildMode());
+                    if (deckCards) {
+                        dispatch(toggleDeckCards());
+                    }
+                }}
             >
                 <FontAwesomeIcon icon={faHammer} />
             </ToggleButton>

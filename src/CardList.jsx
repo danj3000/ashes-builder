@@ -18,6 +18,7 @@ function CardList() {
     const selectedPb = useSelector((state) => state.viewer.selectedPb);
     const buildMode = useSelector((state) => state.viewer.buildMode);
 
+    //TODO: move this to a helper function
     let filteredCards = [];
     if (deckCards) {
         filteredCards = allCards.filter(c => selection.find(s => s.card === c))
