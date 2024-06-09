@@ -11,20 +11,22 @@
 
     .zoom-wrapper {
         position: absolute;
+        width: 100%;
 
         .zoom-image {
             border-radius: 4px;
             border: 2px solid rgba(192, 192, 192, 0.8);
+            width: 100%;
         }
 
         .zoom-nav-left {
             position: absolute;
             left: 10px;
             top: 45%;
-            height: 30px;
-            width: 30px;
+            height: 40px;
+            width: 40px;
             background-color: silver;
-            border-radius: 15px;
+            border-radius: 20px;
             cursor: pointer;
         }
 
@@ -32,10 +34,10 @@
             position: absolute;
             right: 10px;
             top: 45%;
-            height: 30px;
-            width: 30px;
+            height: 40px;
+            width: 40px;
             background-color: silver;
-            border-radius: 15px;
+            border-radius: 20px;
 
             cursor: pointer;
         }
