@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './DeckHeader.css'
 import SimpleDie from './SimpleDie';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClipboardList } from '@fortawesome/free-solid-svg-icons';
+import { faClipboardList, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 import { toggleDeckCards } from './features/cardFilterSlice';
 import classNames from 'classnames';
 import { zoomCard } from './features/viewerSlice';
@@ -16,6 +16,11 @@ function DeckHeader() {
     const diceTypes = useSelector((state) => state.viewer.selectedDice)
     const showDeckCards = useSelector((state) => state.cardFilter.deckCards);
     const dispatch = useDispatch();
+
+    const onSaveClick = () => {
+        confirm('save clicked');
+        // do savey stuff;
+    }
 
     let pbClass = 'phoenixborn-image';
     if (selectedPb) {
@@ -32,13 +37,23 @@ function DeckHeader() {
 
             ))}</div>
             <div className='card-count'>
+
+                <FontAwesomeIcon icon={faFloppyDisk}
+                    onClick={() => {
+                        onSaveClick();
+                    }} />
+            </div>
+            <div className='card-count'>
+
+
                 <FontAwesomeIcon className={countClasses} icon={faClipboardList}
                     onClick={() => {
                         dispatch(toggleDeckCards());
                     }} />
-                {selectedCount}</div>
+                {selectedCount}
+            </div>
         </div>
-    </div>
+    </div >
 }
 
 export default DeckHeader;
