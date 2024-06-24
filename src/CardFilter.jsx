@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCat, faGrip, faGripLines, faHammer } from "@fortawesome/free-solid-svg-icons";
 import { toggleCatSpill, toggleDeckCards, toggleGridView, toggleMagicFilter } from "./features/cardFilterSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleBuildMode } from "./features/viewerSlice";
+import { clearSelection, toggleBuildMode } from "./features/viewerSlice";
 
 function CardFilter() {
     const dispatch = useDispatch()
@@ -54,6 +54,7 @@ function CardFilter() {
                     dispatch(toggleBuildMode());
                     if (deckCards) {
                         dispatch(toggleDeckCards());
+                        dispatch(clearSelection());
                     }
                 }}
             >

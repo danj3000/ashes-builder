@@ -62,6 +62,11 @@ export const viewerSlice = createSlice({
   reducers: {
     toggleBuildMode: (state) => {
       state.buildMode = !state.buildMode
+      if (!state.buildMode) {
+        state.selection = [];
+        state.selectedDice = [];
+        state.selectedPb = null;
+      }
     },
     zoomCard: (state, action) => {
       state.zoomIndex = 0;
@@ -116,6 +121,6 @@ export const viewerSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { toggleBuildMode, zoomCard, clearZoom, setZoomIndex, selectCard, reduceCard } = viewerSlice.actions
+export const { toggleBuildMode, zoomCard, clearZoom, setZoomIndex, selectCard, reduceCard, clearSelection } = viewerSlice.actions
 
 export default viewerSlice.reducer

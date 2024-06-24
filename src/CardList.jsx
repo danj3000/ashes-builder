@@ -21,7 +21,7 @@ function CardList() {
     //TODO: move this to a helper function
     let filteredCards = [];
     if (deckCards) {
-        filteredCards = allCards.filter(c => selection.find(s => s.card === c))
+        filteredCards = allCards.filter(c => selection.find(s => s.card.stub === c.stub))
     } else {
         // apply cat spill restrictions
         const catFreeCards = allCards.filter(c => !catChecked || !c.banned);
