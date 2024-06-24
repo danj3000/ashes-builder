@@ -31,3 +31,6 @@ export const Level = {
     Class: 'class',
     Power: 'power'
 };
+
+// to support ashes.live text parse code
+export const diceList = ["ceremonial", "charm", "illusion", "natural", "divine", "sympathy", "time"]
