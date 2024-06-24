@@ -6,9 +6,11 @@ import { faClipboardList, faFloppyDisk } from '@fortawesome/free-solid-svg-icons
 import { toggleDeckCards } from './features/cardFilterSlice';
 import classNames from 'classnames';
 import { zoomCard } from './features/viewerSlice';
+import { useAddDeckMutation } from './services/ashteki';
 
 function DeckHeader() {
     const selectedPb = useSelector((state) => state.viewer.selectedPb);
+    const selection = useSelector((state) => state.viewer.selection);
     const selectedCount = useSelector((state) => state.viewer.selection.reduce(
         (agg, cardCount) => agg += cardCount.count, 0)
     );
@@ -16,10 +18,13 @@ function DeckHeader() {
     const diceTypes = useSelector((state) => state.viewer.selectedDice)
     const showDeckCards = useSelector((state) => state.cardFilter.deckCards);
     const dispatch = useDispatch();
+    const [addDeck] = useAddDeckMutation()
 
     const onSaveClick = () => {
         confirm('save clicked');
         // do savey stuff;
+        const deck = { phoenixborn: selectedPb.stub, cards: selection.map(s => ({ stub: s.stub, count: s.count })) }
+        addDeck(deck);
     }
 
     let pbClass = 'phoenixborn-image';
