@@ -21,10 +21,10 @@ function DeckHeader() {
     const [addDeck] = useAddDeckMutation()
 
     const onSaveClick = () => {
-        confirm('save clicked');
-        // do savey stuff;
-        const deck = { phoenixborn: selectedPb.stub, cards: selection.map(s => ({ stub: s.stub, count: s.count })) }
-        addDeck(deck);
+        // confirm('save clicked');
+        // // do savey stuff;
+        // const deck = { phoenixborn: selectedPb.stub, cards: selection.map(s => ({ stub: s.stub, count: s.count })) }
+        // addDeck(deck);
     }
 
     let pbClass = 'phoenixborn-image';
@@ -41,13 +41,13 @@ function DeckHeader() {
                 <SimpleDie key={m} magic={m} />
 
             ))}</div>
-            <div className='card-count'>
+            {/* <div className='card-count'>
 
                 <FontAwesomeIcon icon={faFloppyDisk}
                     onClick={() => {
                         onSaveClick();
                     }} />
-            </div>
+            </div> */}
             <div className='card-count'>
 
 
