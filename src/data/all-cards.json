@@ -1,7 +1,4 @@
 {
-    "count": 448,
-    "next": "https://api.ashes.live/v2/cards?show_legacy=false&mode=listing&show_summons=false&releases=all&dice_logic=only&sort=name&order=asc&limit=100&offset=100",
-    "previous": null,
     "results": [
         {
             "name": "Abundance",

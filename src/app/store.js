@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import cardFilterReducer from '../features/cardFilterSlice'
 import viewerReducer from '../features/viewerSlice'
+import authReducer from '../features/authSlice'
 
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { ashtekiApi } from '../services/ashteki'
+import { ashesLiveApi } from '../services/ashesLive'
 
 
 //MIDDLEWARE
@@ -25,14 +27,20 @@ export const store = configureStore({
     reducer: {
         cardFilter: cardFilterReducer,
         viewer: viewerReducer,
+        auth: authReducer,
 
         [ashtekiApi.reducerPath]: ashtekiApi.reducer,
+        [ashesLiveApi.reducerPath]: ashesLiveApi.reducer,
     },
     preloadedState: reHydrateStore(),
     // Adding the api middleware enables caching, invalidation, polling,
     // and other useful features of `rtk-query`.
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat([ashtekiApi.middleware, localStorageMiddleware]),
+        getDefaultMiddleware().concat([
+            ashtekiApi.middleware,
+            ashesLiveApi.middleware,
+            localStorageMiddleware
+        ]),
 })
 
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors

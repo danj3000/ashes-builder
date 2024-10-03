@@ -2,22 +2,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 // Define a service using a base URL and expected endpoints
-export const ashtekiApi = createApi({
-  reducerPath: 'ashtekiApi',
+export const ashesLiveApi = createApi({
+  reducerPath: 'ashesLiveApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: '/api',
-    // baseUrl: 'https://ashteki.com/',
+    baseUrl: '/live',
   }),
   endpoints: (builder) => ({
-    login: builder.mutation({
-      query: (credentials) => ({
-        url: '/account/login',
-        method: 'POST',
-        body: credentials
-      })
-    }),
-    getAllCards: builder.query({
-      query: () => `cards`,
+    getPubDecks: builder.query({
+      query: () => 'decks'
     }),
     addDeck: builder.mutation({
       query: deck => ({
@@ -31,4 +23,4 @@ export const ashtekiApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAllCardsQuery, useAddDeckMutation, useLoginMutation } = ashtekiApi
+export const { useGetPubDecksQuery, useAddDeckMutation } = ashesLiveApi

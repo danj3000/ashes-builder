@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './DeckHeader.css'
 import SimpleDie from './SimpleDie';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClipboardList, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
+import { faClipboardList, faFloppyDisk, faUser } from '@fortawesome/free-solid-svg-icons';
 import { toggleDeckCards } from './features/cardFilterSlice';
 import classNames from 'classnames';
 import { zoomCard } from './features/viewerSlice';
@@ -34,31 +34,35 @@ function DeckHeader() {
     const countClasses = classNames('count-icon', {
         active: showDeckCards
     })
-    return <div className='deck-wrapper'>
-        <div className='deck-header'>
-            <div className={pbClass} onClick={() => dispatch(zoomCard(selectedPb))}></div>
-            <div className='dice-rack'>{diceTypes.map(m => (
-                <SimpleDie key={m} magic={m} />
+    return (
+        <div className='deck-wrapper'>
+            <div className='deck-header'>
+                <div className={pbClass} onClick={() => dispatch(zoomCard(selectedPb))}></div>
+                <div className='dice-rack'>{diceTypes.map(m => (
+                    <SimpleDie key={m} magic={m} />
 
-            ))}</div>
-            <div className='card-count'>
+                ))}</div>
+                <div className='card-count'>
+                    <FontAwesomeIcon icon={faUser}
+                        onClick={() => {
+                            onSaveClick();
+                        }} />
 
-                <FontAwesomeIcon icon={faFloppyDisk}
-                    onClick={() => {
-                        onSaveClick();
-                    }} />
+                    <FontAwesomeIcon icon={faFloppyDisk}
+                        onClick={() => {
+                            onSaveClick();
+                        }} />
+                </div>
+                <div className='card-count'>
+                    <FontAwesomeIcon className={countClasses} icon={faClipboardList}
+                        onClick={() => {
+                            dispatch(toggleDeckCards());
+                        }} />
+                    {selectedCount}
+                </div>
             </div>
-            <div className='card-count'>
-
-
-                <FontAwesomeIcon className={countClasses} icon={faClipboardList}
-                    onClick={() => {
-                        dispatch(toggleDeckCards());
-                    }} />
-                {selectedCount}
-            </div>
-        </div>
-    </div >
+        </div >
+    )
 }
 
 export default DeckHeader;
