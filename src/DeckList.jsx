@@ -15,7 +15,7 @@ export default function DeckList() {
         <div>
             <h2>this is the deck list (can't you tell?)</h2>
             {
-                pubDecks.results.map(d => <DeckListItem key={d.id} deck={d} />)
+                pubDecks.results.slice(0, 10).map(d => <DeckListItem key={d.id} deck={d} />)
             }
         </div>
     )

@@ -9,13 +9,6 @@ export const ashtekiApi = createApi({
     // baseUrl: 'https://ashteki.com/',
   }),
   endpoints: (builder) => ({
-    login: builder.mutation({
-      query: (credentials) => ({
-        url: '/account/login',
-        method: 'POST',
-        body: credentials
-      })
-    }),
     getAllCards: builder.query({
       query: () => `cards`,
     }),

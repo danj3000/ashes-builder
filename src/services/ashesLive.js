@@ -11,6 +11,22 @@ export const ashesLiveApi = createApi({
     getPubDecks: builder.query({
       query: () => 'decks'
     }),
+
+    login: builder.mutation({
+      query: (credentials) => ({
+        url: 'token',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+        body: new URLSearchParams({
+          'username': credentials.username,
+          'password': credentials.password,
+          'grant_type': 'password',
+          'scope': 'token:longterm'
+        })
+      })
+    }),
+
+
     addDeck: builder.mutation({
       query: deck => ({
         url: '/decks',
@@ -23,4 +39,4 @@ export const ashesLiveApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetPubDecksQuery, useAddDeckMutation } = ashesLiveApi
+export const { useGetPubDecksQuery, useLoginMutation, useAddDeckMutation } = ashesLiveApi
