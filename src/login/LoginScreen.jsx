@@ -1,14 +1,26 @@
 // LoginScreen.js
 import { useForm } from 'react-hook-form'
 import { useLoginMutation } from '../services/ashesLive';
+import { useDispatch } from 'react-redux'
+import { setCredentials } from '../features/authSlice'
+import { useNavigate } from 'react-router-dom';
 
 const LoginScreen = () => {
   const { register, handleSubmit } = useForm()
   const [login] = useLoginMutation()
-
-  const submitForm = (data) => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const submitForm = async (data) => {
     console.log(data.email)
-    login({ username: data.email, password: data.password });
+    try {
+      const result = await login({ username: data.email, password: data.password });
+      if (result.data) {
+        dispatch(setCredentials(result.data));
+        navigate('/');
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (

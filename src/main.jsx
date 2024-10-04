@@ -8,8 +8,9 @@ import { Provider } from 'react-redux'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './login/LoginScreen.jsx';
 import Builder from './Builder.jsx';
-import DeckList from './DeckList.jsx';
 import ErrorPage from './ErrorPage.jsx';
+import HomeScreen from './HomeScreen.jsx';
+import HomeLayout from './HomeLayout.jsx';
 
 const router = createBrowserRouter([
   {
@@ -17,17 +18,24 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        index: true,
-        element: <DeckList />,
+        path: '/',
+        element: <HomeLayout />,
+        children: [
+          {
+            index: true,
+            element: <HomeScreen />,
+          },
+          {
+            path: '/login',
+            element: <Login />,
+          }
+        ]
       },
       {
         path: '/builder',
         element: <Builder />,
       },
-      {
-        path: '/login',
-        element: <Login />,
-      }
+
     ],
     errorElement: <ErrorPage />
   }

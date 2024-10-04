@@ -1,12 +1,13 @@
-import { ButtonGroup, Dropdown, ToggleButton } from "react-bootstrap";
+import { Button, ButtonGroup, Dropdown, Nav, ToggleButton } from "react-bootstrap";
 import './CardFilter.css';
 import { Magic } from "./constants";
 import SimpleDie from "./SimpleDie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCat, faGrip, faGripLines, faHammer } from "@fortawesome/free-solid-svg-icons";
+import { faCat, faGrip, faGripLines, faHammer, faHome } from "@fortawesome/free-solid-svg-icons";
 import { toggleCatSpill, toggleDeckCards, toggleGridView, toggleMagicFilter } from "./features/cardFilterSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { clearSelection, toggleBuildMode } from "./features/viewerSlice";
+import { LinkContainer } from "react-router-bootstrap";
 
 function CardFilter() {
     const dispatch = useDispatch()
@@ -18,6 +19,14 @@ function CardFilter() {
 
     return <div className='card-filter'>
         <ButtonGroup className="mb-2">
+            <ToggleButton
+                className="toggle"
+                variant="light"
+            >
+                <LinkContainer to="/">
+                    <Nav.Link><FontAwesomeIcon icon={faHome} /></Nav.Link>
+                </LinkContainer>
+            </ToggleButton>
             <ToggleButton
                 className="toggle"
                 id="toggle-check"

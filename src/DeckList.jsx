@@ -1,21 +1,17 @@
 import DeckListItem from "./DeckListItem";
-import { useGetPubDecksQuery } from "./services/ashesLive"
+import { useGetMyDecksQuery } from "./services/ashesLive"
 
 export default function DeckList() {
-    const { data: pubDecks, isLoading } = useGetPubDecksQuery()
-
+    const { data: decks, isLoading } = useGetMyDecksQuery()
     if (isLoading) {
         return <div>Loading</div>;
     }
 
-    if (!pubDecks) {
-        return <div>No posts</div>;
-    }
     return (
         <div>
-            <h2>this is the deck list (can't you tell?)</h2>
-            {
-                pubDecks.results.slice(0, 10).map(d => <DeckListItem key={d.id} deck={d} />)
+            {decks
+                ? decks.results.slice(0, 10).map(d => <DeckListItem key={d.id} deck={d} />)
+                : <div>No posts</div>
             }
         </div>
     )
