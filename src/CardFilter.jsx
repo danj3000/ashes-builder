@@ -7,10 +7,11 @@ import { faCat, faGrip, faGripLines, faHammer, faHome } from "@fortawesome/free-
 import { toggleCatSpill, toggleDeckCards, toggleGridView, toggleMagicFilter } from "./features/cardFilterSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { clearSelection, toggleBuildMode } from "./features/viewerSlice";
-import { LinkContainer } from "react-router-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function CardFilter() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const catChecked = useSelector((state) => state.cardFilter.catSpill)
     const showGrid = useSelector((state) => state.cardFilter.gridView)
     const magicFilter = useSelector((state) => state.cardFilter.magicFilter)
@@ -19,14 +20,14 @@ function CardFilter() {
 
     return <div className='card-filter'>
         <ButtonGroup className="mb-2">
-            <ToggleButton
+            <Button
                 className="toggle"
                 variant="light"
+                onClick={() => navigate('/')}
             >
-                <LinkContainer to="/">
-                    <Nav.Link><FontAwesomeIcon icon={faHome} /></Nav.Link>
-                </LinkContainer>
-            </ToggleButton>
+                <FontAwesomeIcon icon={faHome} />
+            </Button>
+
             <ToggleButton
                 className="toggle"
                 id="toggle-check"

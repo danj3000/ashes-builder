@@ -26,23 +26,20 @@ export default function HomeScreen() {
     return <div >
         <div className='home-menu'>
             <ButtonGroup className="mb-2">
-                <ToggleButton
+                <Button
                     className="toggle"
                     variant="light"
+                    onClick={() => navigate('/')}
                 >
-                    <LinkContainer to="/">
-                        <Nav.Link><FontAwesomeIcon icon={faHome} /></Nav.Link>
-                    </LinkContainer>
-                </ToggleButton>
-                <ToggleButton
+                    <FontAwesomeIcon icon={faHome} />
+                </Button>
+                <Button
                     className="toggle"
                     variant="warning"
+                    onClick={() => navigate('builder')}
                 >
-                    <LinkContainer to="/builder">
-                        <Nav.Link><FontAwesomeIcon icon={faPlus} /></Nav.Link>
-                    </LinkContainer>
-
-                </ToggleButton>
+                    <FontAwesomeIcon icon={faPlus} />
+                </Button>
             </ButtonGroup>
             <Button
                 className="toggle mb-2"
