@@ -41,12 +41,12 @@ function DeckHeader() {
                     <SimpleDie key={m} magic={m} />
 
                 ))}</div>
-            <div className='card-count'>
+                {/* <div className='card-count'>
                     <FontAwesomeIcon icon={faFloppyDisk}
                         onClick={() => {
                             onSaveClick();
                         }} />
-            </div>
+                </div> */}
                 <div className='card-count'>
                     <FontAwesomeIcon className={countClasses} icon={faClipboardList}
                         onClick={() => {
