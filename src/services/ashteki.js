@@ -5,8 +5,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const ashtekiApi = createApi({
   reducerPath: 'ashtekiApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:4000/api',
-    // baseUrl: 'https://ashteki.com/api/',
+    baseUrl: '/api',
+    // baseUrl: 'https://ashteki.com/',
   }),
   endpoints: (builder) => ({
     getAllCards: builder.query({
@@ -24,4 +24,4 @@ export const ashtekiApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAllCardsQuery, useAddDeckMutation } = ashtekiApi
+export const { useGetAllCardsQuery, useAddDeckMutation, useLoginMutation } = ashtekiApi
