@@ -2,10 +2,9 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './HomeLayout.css'
 import { logout } from './features/authSlice';
-import { Button, ButtonGroup, Nav, ToggleButton } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { Button, ButtonGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faHome, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faGripVertical } from "@fortawesome/free-solid-svg-icons";
 import { faUser as faRegularUser } from '@fortawesome/free-regular-svg-icons';
 
 export default function HomeScreen() {
@@ -28,28 +27,21 @@ export default function HomeScreen() {
             <ButtonGroup className="mb-2">
                 <Button
                     className="toggle"
-                    variant="light"
+                    variant="dark"
                     onClick={() => navigate('/')}
                 >
-                    <FontAwesomeIcon icon={faHome} />
+                    <FontAwesomeIcon icon={faGripVertical} />
                 </Button>
                 <Button
                     className="toggle"
-                    variant="warning"
-                    onClick={() => navigate('builder')}
+                    id="mode-check"
+                    // variant={'secondary'}
+                    value="true"
+                    onClick={(e) => loginLinkClick(e)}
                 >
-                    <FontAwesomeIcon icon={faPlus} />
+                    <FontAwesomeIcon icon={loggedIn ? faRegularUser : faUser} />
                 </Button>
             </ButtonGroup>
-            <Button
-                className="toggle mb-2"
-                id="mode-check"
-                // variant={'secondary'}
-                value="true"
-                onClick={(e) => loginLinkClick(e)}
-            >
-                <FontAwesomeIcon icon={loggedIn ? faRegularUser : faUser} />
-            </Button>
 
         </div>
         <Outlet />

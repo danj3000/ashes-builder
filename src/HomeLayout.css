@@ -12,5 +12,9 @@
 
     .toggle {
         margin-top: 5px;
+
+        svg {
+            min-width: 16px;
+        }
     }
 }

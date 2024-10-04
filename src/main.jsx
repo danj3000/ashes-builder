@@ -19,23 +19,24 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <HomeLayout />,
-        children: [
-          {
-            index: true,
-            element: <HomeScreen />,
-          },
-          {
-            path: '/login',
-            element: <Login />,
-          }
-        ]
-      },
-      {
-        path: '/builder',
         element: <Builder />,
       },
 
+      {
+        path: '/decks',
+        element: <HomeLayout />,
+        children: [
+          {
+            path: '/decks',
+            element: <HomeScreen />,
+          }
+          ,
+          {
+            path: 'login',
+            element: <Login />,
+          }
+        ]
+      }
     ],
     errorElement: <ErrorPage />
   }
