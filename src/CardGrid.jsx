@@ -8,11 +8,12 @@ import { ConjurationTypes } from "./constants";
 function CardGrid({ cards }) {
     const dispatch = useDispatch();
     const buildMode = useSelector((state) => state.viewer.buildMode)
+    const catSpill = useSelector((state) => state.cardFilter.catSpill)
 
     return <div className='gallery-grid'>
         {cards.map((card) => {
             const classes = classNames('gallery-card-image', {
-                partial: card.partial
+                partial: catSpill && card.partial
             });
             return <div key={card.stub} className='gallery-card-wrapper'>
                 <img
