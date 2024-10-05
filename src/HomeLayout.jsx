@@ -4,7 +4,7 @@ import './HomeLayout.css'
 import { logout } from './features/authSlice';
 import { Button, ButtonGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faGripVertical } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faGripVertical, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { faUser as faRegularUser } from '@fortawesome/free-regular-svg-icons';
 
 export default function HomeScreen() {
@@ -35,14 +35,16 @@ export default function HomeScreen() {
                 <Button
                     className="toggle"
                     id="mode-check"
-                    // variant={'secondary'}
+                    variant={loggedIn ? 'warning' : 'secondary'}
                     value="true"
                     onClick={(e) => loginLinkClick(e)}
                 >
-                    <FontAwesomeIcon icon={loggedIn ? faRegularUser : faUser} />
+                    <FontAwesomeIcon icon={loggedIn ? faUser : faRegularUser} />
                 </Button>
             </ButtonGroup>
-
+            <div style={{ color: 'darkred' }}>
+                <FontAwesomeIcon icon={faTriangleExclamation} />&nbsp;
+                work<br />in progress</div>
         </div>
         <Outlet />
 
