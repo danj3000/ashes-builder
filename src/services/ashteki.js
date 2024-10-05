@@ -1,12 +1,11 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-const isProd = import.meta.env.PROD
 
 // Define a service using a base URL and expected endpoints
 export const ashtekiApi = createApi({
   reducerPath: 'ashtekiApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: isProd ? 'https://ashteki.com/api' : '/api',
+    baseUrl: '/api',
     prepareHeaders: (headers, { getState }) => {
       // By default, if we have a token in the store, let's use that for authenticated requests
       const state = getState();
