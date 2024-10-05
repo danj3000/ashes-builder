@@ -14,6 +14,14 @@ app.use(
     })
 );
 
+app.use(
+    '/api',
+    createProxyMiddleware({
+        target: process.env.NODE_ENV === 'production' ? 'https://ashteki.com/api/' : 'http://localhost:4000/api/',
+        changeOrigin: true
+    })
+);
+
 app.get("/message", (_, res) => res.send("Hello from express!"));
 
 ViteExpress.listen(app, 3000, () => console.log("Server is listening..."));
