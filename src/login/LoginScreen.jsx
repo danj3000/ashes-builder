@@ -1,6 +1,6 @@
 // LoginScreen.js
 import { useForm } from 'react-hook-form'
-import { useLoginMutation } from '../services/ashesLive';
+import { useLoginMutation } from '../services/ashteki';
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '../features/authSlice'
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,7 @@ const LoginScreen = () => {
       const result = await login({ username: data.email, password: data.password });
       if (result.data) {
         dispatch(setCredentials(result.data));
-        navigate('/');
+        navigate('/decks');
       }
     } catch (err) {
       console.log(err);

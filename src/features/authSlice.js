@@ -8,7 +8,7 @@ const authSlice = createSlice({
         setCredentials: (state, action
         ) => {
             state.user = action.payload.user
-            state.token = action.payload.access_token
+            state.token = action.payload.token
         },
         logout: (state, action) => {
             state.user = undefined;

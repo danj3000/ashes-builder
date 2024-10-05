@@ -50,4 +50,4 @@ export const ashesLiveApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetPubDecksQuery, useGetMyDecksQuery, useLoginMutation, useAddDeckMutation } = ashesLiveApi
+export const { useGetPubDecksQuery, useGetMyDecksQuery, useLoginMutation } = ashesLiveApi
