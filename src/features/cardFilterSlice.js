@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   catSpill: true,
-  gridView: false,
+  gridView: true,
   deckCards: false,
   magicFilter: []
 };
