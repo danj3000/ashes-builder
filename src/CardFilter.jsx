@@ -50,7 +50,7 @@ function CardFilter() {
                 value="true"
                 onChange={() => dispatch(toggleGridView())}
             >
-                <FontAwesomeIcon icon={showGrid ? faGripLines : faGrip} />
+                <FontAwesomeIcon icon={showGrid ? faGrip : faGripLines} />
             </ToggleButton>
             <ToggleButton
                 className="toggle"
