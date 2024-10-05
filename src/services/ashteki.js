@@ -32,7 +32,7 @@ export const ashtekiApi = createApi({
       })
     }),
     getMyDecks: builder.query({
-      query: () => 'decks?pageSize=50&page=1',
+      query: () => 'decks',
     }),
   }),
 })
