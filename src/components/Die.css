@@ -1,0 +1,189 @@
+@import '../../styles/variables';
+@import '../../styles/colours';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+@mixin dice-colors($text, $background) {
+    color: $text;
+    background: $background;
+    border-color: $text;
+}
+
+.exhausted {
+    // background: #999;
+    color: #555;
+    background-color: unset;
+    background-size: cover;
+
+    &.charm {
+        background-image: url('~assets/img/tag-charm.png');
+    }
+
+    &.illusion {
+        background-image: url('~assets/img/tag-illusion.png');
+    }
+
+    &.natural {
+        background-image: url('~assets/img/tag-natural.png');
+    }
+
+    &.divine {
+        background-image: url('~assets/img/tag-divine.png');
+    }
+
+    &.sympathy {
+        background-image: url('~assets/img/tag-sympathy.png');
+    }
+
+    &.time {
+        background-image: url('~assets/img/tag-time.png');
+    }
+
+}
+
+:not(.exhausted) {
+    &.ceremonial {
+        @include dice-colors(#ee3342, #111821);
+    }
+
+    &.charm {
+        @include dice-colors(#f7e442, #f34f98);
+    }
+
+    &.illusion {
+        @include dice-colors(#8bc7ea, #490d67);
+    }
+
+    &.natural {
+        @include dice-colors(#cedb00, #004a98);
+    }
+
+    &.divine {
+        @include dice-colors(#b58a2b, #f2f2f2);
+    }
+
+    &.sympathy {
+        @include dice-colors(#e3c2af, #119981);
+    }
+
+    &.time {
+        @include dice-colors(#dfdfdf, #9a2e36);
+    }
+
+    &.rage {
+        @include dice-colors(#e41d1d, #f1daa6);
+
+        &.power {
+            @include dice-colors(white, #e41d1d);
+
+        }
+    }
+}
+
+.any {
+    @include dice-colors(#111, #fff);
+    border: 1px solid #fff;
+}
+
+.die {
+    border-radius: 3px;
+    margin: 5px;
+    height: 24px;
+    width: 24px;
+    text-align: center;
+    display: inline-block;
+}
+
+.prompt-die {
+    border-radius: 3px;
+    margin: 5px;
+    height: 24px;
+    width: 24px;
+    text-align: center;
+    display: inline-block;
+    z-index: $layer-cards + 1;
+    line-height: 1.5;
+}
+
+.chat-die {
+    border-radius: 3px;
+    text-align: center;
+    display: inline-block;
+    padding: 2px;
+    width: 17px;
+}
+
+
+.cardlog-die {
+    width: 58px;
+    margin: auto;
+}
+
+.small .die {
+    line-height: 2rem;
+    border-radius: 3px;
+    height: 18px;
+    width: 18px;
+    margin: 3px;
+}
+
+.large .die {
+    font-size: 1.3rem;
+    line-height: 2rem;
+    border-radius: 5px;
+    height: 36px;
+    width: 36px;
+    min-width: 36px;
+    margin: 5px;
+}
+
+
+.x-large .die {
+    font-size: 1.6rem;
+    line-height: 3rem;
+    border-radius: 5px;
+    height: 48px;
+    width: 48px;
+    margin: 5px;
+}
+
+.card-wrapper .die {
+    // position: absolute;
+}
+
+.die {
+    &.can-play {
+        animation: glowing 2000ms infinite;
+
+        &.controlled {
+            box-shadow: $controlledBox,
+                0 0 10px 1px fadeout(lighten(theme-color('primary'), 60%), 10%);
+        }
+    }
+
+    &.in-danger {
+        box-shadow: 0 0 1px 2px red;
+    }
+
+    &.selected {
+        box-shadow: 0 0 1px 4px theme-color('selected');
+
+        &.controlled {
+            box-shadow: $controlledBox, 0 0 1px 4px theme-color('selected');
+        }
+    }
+
+
+    &.selectable {
+        box-shadow: 0 0 8px 3px theme-color('secondary');
+
+    }
+
+    &.unselectable {
+        filter: grayscale(100%) brightness(60%);
+    }
+
+    &.slot {
+        border: 1px solid darkred;
+    }
+}

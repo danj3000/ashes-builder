@@ -1,3 +1,4 @@
+import DeckDice from './components/DeckDice';
 import './DeckListItem.css'
 
 function DeckListItem({ deck }) {
@@ -10,7 +11,10 @@ function DeckListItem({ deck }) {
         <div className='deck-wrapper'>
             <div className='deck-header'>
                 <div className={pbClass}></div>
-                <div className='deck-title'>{deck.name}</div>
+                <div className='deck-title'>
+                    {deck.name}
+                    <DeckDice deck={deck} />
+                </div>
             </div>
         </div >
     )

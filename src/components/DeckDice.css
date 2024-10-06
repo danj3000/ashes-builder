@@ -1,0 +1,17 @@
+ .deck-dice {
+     /* display: flex;
+     justify-content: center;
+     margin-bottom: 5px; */
+
+     .die {
+         display: inline-block;
+         margin: 1px;
+         height: 24px;
+         width: 24px;
+         min-width: 24px;
+         border-radius: 3px;
+         text-align: center;
+         font-size: 14px;
+     }
+
+ }

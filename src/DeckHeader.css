@@ -9,9 +9,9 @@
 }
 
 .deck-header {
-    /* height: 48px; */
     display: flex;
     flex-direction: row;
+    gap: 5px;
 
     .card-count {
         font-size: 32px;
@@ -36,7 +36,6 @@
         align-items: center;
         flex-wrap: wrap;
         gap: 5px;
-        margin-left: 5px;
     }
 
     .phoenixborn-image {

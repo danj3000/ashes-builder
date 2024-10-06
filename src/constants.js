@@ -26,6 +26,16 @@ export const Magic = {
     // Rage: 'rage'
 };
 
+export const MagicTypes = [
+    'ceremonial',
+    'charm',
+    'divine',
+    'illusion',
+    'natural',
+    'sympathy',
+    'time'
+];
+
 export const Level = {
     Basic: 'basic',
     Class: 'class',
